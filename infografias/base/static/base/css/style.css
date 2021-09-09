@@ -1,0 +1,104 @@
+/* Paleta colores */
+/* #ccd5ae,#e9edc9,#fefae0,#faedcd,#d4a373 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Nav */
+.nombre-logo{
+    color:#272727;
+}
+
+.color-social{
+    color:#ffffff;
+}
+
+.titulo-unicef{
+    padding: 10px .3em;
+    text-align: center;
+    align-items: center;
+}
+
+.selector_container{
+    margin: 10px auto;
+    padding: 10px auto;
+    text-align: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #41b6e4;
+
+}
+.selector{
+    text-align: center;
+    align-items: center;
+}
+
+
+.titulos-seccion{
+    padding: 20px .3em;
+    text-align: center;
+    align-items: center;
+    background-color: #41b6e4;
+}
+
+.subtitulo-seccion{
+    padding: 5px .6em;
+    text-align: center;
+    align-items: center;
+}
+
+
+.cards-situacional{
+    margin: 5px auto;
+    padding: 5px auto;
+    text-align: center;
+    align-items: center;
+    height: auto;
+    border-radius: 10px;
+    background-color: #a8d9ec;
+}
+
+.grid-covid{
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    padding: 20px .5em;
+    grid-auto-rows: auto;
+    grid-gap: 5px;
+    
+}
+
+.grid-respuesta{
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px .5em;
+    grid-auto-rows: auto;
+    grid-gap: 5px;
+    
+}
+
+.grid-acciones{
+    padding: 20px .5em;   
+}
+
+
+.map{
+    text-align: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 760px) {
+
+    .grid-covid{
+        text-align: center;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 5px .5em;
+        grid-auto-rows: 200;
+        grid-gap: 5px;
+    }
+}
