@@ -91,6 +91,13 @@
     align-items: center;
 }
 
+.grafica{
+
+    width: 100%;
+    height: 100%;   
+
+}
+
 @media only screen and (max-width: 760px) {
 
     .grid-covid{
@@ -102,3 +109,19 @@
         grid-gap: 5px;
     }
 }
+
+
+@media only screen and (max-width: 450px) {
+
+    .grafica{
+
+        float: none;
+        width: 100%;
+        margin-top: 0px;
+        margin-right:0px;
+        margin-left:0px;
+        height: 200%;
+
+    }
+}
+

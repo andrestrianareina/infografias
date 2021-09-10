@@ -244,8 +244,8 @@
 
                     // Choco
 
-                    var logi_choco = -76.4
-                    var lati_choco = 5.4
+                    var logi_choco = -77
+                    var lati_choco = 6
                     var mun_choco = {{locs_choco|safe}}
                     var nz_choco = {{z_choco|safe}}
 
@@ -489,7 +489,7 @@
             <div class="col-10 col-sm-5 col-md-5 cards-situacional">
                 <h3 class="subtitulo-seccion">Servicios públicos</h3>
                 <div>
-                    <p class=""><img src="{% static "base/icon/WIFI.png" %}" width="50" height="50"></p>
+                    <p class=""><img src="{% static "base/icon/wifi.png" %}" width="50" height="50"></p>
                     <p>Porcentaje de Hogares con conexión a internet en el departamento: <strong id="internet">{{internet_porcentaje_guajira|safe}}</strong></p>
                     <script>
                             var arauca_internet = 0
@@ -1008,77 +1008,82 @@
 
             </div>
             <div class="col-10 col-sm-5 col-md-5 cards-situacional" >
-                <canvas id="myChart"></canvas>
-                <script>
-
-                    // La Guajira
-                    var fechas = {{años_guajira|safe}};
-                    var HeridosGuajira = {{heridos_guajira|safe}};
-                    var FallecidosGuajira = {{fallecidos_guajira|safe}};
-
-                    // Choco
-                    var HeridosChoco = {{heridos_choco|safe}};
-                    var FallecidosChoco = {{fallecidos_choco|safe}};
-
-                    let miCanvas = document.getElementById('myChart').getContext("2d");
-
-                    var chart = new Chart(miCanvas, {
-                            type: "line",
-                            data: {
-                            labels: fechas,
-                            datasets: [
-                            {
-                                data: HeridosGuajira,
-                                label: 'Heridos',
-                                barThickness:'flex',
-                                backgroundColor:'#010203',  
-                            },
-                            {
-                                data: FallecidosGuajira,
-                                label: 'Fallecidos',
-                                barThickness:'flex',
-                                backgroundColor:'#03a9fc',  
-                            },
-                            ]
-                            },
-                            options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                title: {
-                                display: true,
-                                text: 'MAP-MUSE por año',
-                                padding: {
-                                        top: 10,
-                                        bottom: 30
+                <div>
+                    <h3 class="subtitulo-seccion" >Fallecidos y heridos por minas antipersona por año</h3>
+                </div>
+                <div class="">
+                    <canvas class="grafica" height="400" id="myChart"></canvas></canvas>
+                    <script>
+    
+                        // La Guajira
+                        var fechas = {{años_guajira|safe}};
+                        var HeridosGuajira = {{heridos_guajira|safe}};
+                        var FallecidosGuajira = {{fallecidos_guajira|safe}};
+    
+                        // Choco
+                        var HeridosChoco = {{heridos_choco|safe}};
+                        var FallecidosChoco = {{fallecidos_choco|safe}};
+    
+                        let miCanvas = document.getElementById('myChart').getContext("2d");
+    
+                        var chart = new Chart(miCanvas, {
+                                type: "line",
+                                data: {
+                                labels: fechas,
+                                datasets: [
+                                {
+                                    data: HeridosGuajira,
+                                    label: 'Heridos',
+                                    barThickness:'flex',
+                                    backgroundColor:'#010203',  
+                                },
+                                {
+                                    data: FallecidosGuajira,
+                                    label: 'Fallecidos',
+                                    barThickness:'flex',
+                                    backgroundColor:'#03a9fc',  
+                                },
+                                ]
+                                },
+                                options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    title: {
+                                    display: true,
+                                    text: 'MAP-MUSE por año',
+                                    padding: {
+                                            top: 10,
+                                            bottom: 30
+                                            }
                                         }
                                     }
                                 }
+                            })
+    
+    
+                            document.querySelector('.selector').addEventListener("change",changeGrafica);
+    
+                            function changeGrafica(event){
+                                if(event.target.value === "La Guajira"){
+                                    heridos = HeridosGuajira;
+                                    fallecidos = FallecidosGuajira;
+                                    chart.data.datasets[0].data = heridos;
+                                    chart.data.datasets[1].data = fallecidos;
+                                    chart.update();
+                                }
+                                else if(event.target.value === "Choco"){
+                                    heridos = HeridosChoco;
+                                    fallecidos = FallecidosChoco;
+                                    chart.data.datasets[0].data = heridos;
+                                    chart.data.datasets[1].data = fallecidos;
+                                    chart.update();
+    
+                                }
+                                
                             }
-                        })
-
-
-                        document.querySelector('.selector').addEventListener("change",changeGrafica);
-
-                        function changeGrafica(event){
-                            if(event.target.value === "La Guajira"){
-                                heridos = HeridosGuajira;
-                                fallecidos = FallecidosGuajira;
-                                chart.data.datasets[0].data = heridos;
-                                chart.data.datasets[1].data = fallecidos;
-                                chart.update();
-                            }
-                            else if(event.target.value === "Choco"){
-                                heridos = HeridosChoco;
-                                fallecidos = FallecidosChoco;
-                                chart.data.datasets[0].data = heridos;
-                                chart.data.datasets[1].data = fallecidos;
-                                chart.update();
-
-                            }
-                            
-                        }
-                </script>
+                    </script>
+                </div>
             </div>
         </div>
     </section>
@@ -1202,7 +1207,7 @@
             <div class="col-10 col-sm-10 col-md-10 cards-situacional">
                 <div class="row">
                     <div class="col-12 col-sm-4 col-md-4 grid-acciones">
-                        <img src="https://mega.nz/folder/q40UwYKZ#pbrBHo9WGxYpzqw7JpgvaA/file/e5l2nDAA" alt="MDN">
+                        <img src="{% static "base/icon/foto.png" %}" width="300" height="200">
                     </div>
                     <div class="col-12 col-sm-8 col-md-8 grid-acciones">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos quasi esse possimus perferendis beatae aliquid aut dolorum fuga in, dolorem sint consequatur error asperiores et itaque at sunt voluptates nam!</p>
