@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
 from datetime import date, timedelta
-import seaborn as sns
-import matplotlib.pyplot as plt
-import plotly.express as px
-import plotly.graph_objs as go
+#import seaborn as sns
+#import matplotlib.pyplot as plt
+#import plotly.express as px
+#import plotly.graph_objs as go
 
 df = pd.read_csv('/Users/andresmauriciotrianareina/Documents/GitHub/datainfografias/Propuesta_levantamiento_información_V1.csv')
 #df = pd.read_csv('https://raw.githubusercontent.com/andrestrianareina/datainfografias/master/Propuesta_levantamiento_información_V1.csv')
@@ -71,6 +71,10 @@ covid_activos_total_choco = "{:,.0f}".format(covid_activos_choco['No. De persona
 covid_sinclasificar_choco= choco[choco['Subtema'] == 'Sin clasificar']
 covid_sinclasificar_total_choco = "{:,.0f}".format(covid_sinclasificar_choco['No. De personas/porcentaje/eventos'].sum())
 
+# vacunados
+
+covid_vacunados_choco = choco[choco['Subtema'] == 'Dosis aplicadas']
+covid_vacunados_total_choco = "{:,.0f}".format(covid_vacunados_choco['No. De personas/porcentaje/eventos'].sum())
 
 # conexión json para el mapa
 
@@ -85,17 +89,17 @@ with urlopen('https://raw.githubusercontent.com/andresmtr/mapa_municipios_colomb
 locs = covid_contagios_choco['Municipio']
 
 
-for loc in counties['features']:
-    loc['id'] = loc['properties']['MPIO_CNMBR']
-map_choco = go.Figure(go.Choroplethmapbox(
-                    geojson=counties,
-                    locations=locs,
-                    z=covid_contagios_choco['No. De personas/porcentaje/eventos'],
-                    colorscale='plotly3',
-                    colorbar_title="Total contagios"))
-map_choco.update_layout(mapbox_style="carto-positron",
-                        mapbox_zoom=6.7,
-                        mapbox_center = {"lat": 11.5, "lon": -73})
+# for loc in counties['features']:
+#     loc['id'] = loc['properties']['MPIO_CNMBR']
+# map_choco = go.Figure(go.Choroplethmapbox(
+#                     geojson=counties,
+#                     locations=locs,
+#                     z=covid_contagios_choco['No. De personas/porcentaje/eventos'],
+#                     colorscale='plotly3',
+#                     colorbar_title="Total contagios"))
+# map_choco.update_layout(mapbox_style="carto-positron",
+#                         mapbox_zoom=6.7,
+#                         mapbox_center = {"lat": 11.5, "lon": -73})
 
 locs_choco = covid_contagios_choco['Municipio'].tolist()
 z_choco=covid_contagios_choco['No. De personas/porcentaje/eventos'].tolist()
@@ -267,6 +271,73 @@ choco_datos_final_grafica = choco_datos_final_grafica.fillna(0)
 años_choco = lista_años_df['Año'].tolist()
 fallecidos_choco = choco_datos_final_grafica['Fallecidos'].tolist()
 heridos_choco = choco_datos_final_grafica['Heridos'].tolist()
+
+
+##########################
+###### Respuesta UNICEF
+
+#Kits alimentos(necesidades basicas)
+kits_necesidades_choco = choco[choco['Subtema'] == 'Familias se beneficiaron de la entrega de kits de necesidades básicas']
+kits_necesidades_choco_total = "{:,.0f}".format(kits_necesidades_choco['No. De personas/porcentaje/eventos'].sum())
+
+#mensajes
+Mensajes_choco = choco[choco['Subtema'] == 'Mensajes informativos']
+Mensajes_choco_total = "{:,.0f}".format(Mensajes_choco['No. De personas/porcentaje/eventos'].sum())
+
+#desnutrición
+desnutricion1_choco = choco[choco['Subtema'] == 'Activación de rutas en casos de riesgo de desnutrición - respuesta']
+desnutricion1_choco_total = "{:,.0f}".format(desnutricion1_choco['No. De personas/porcentaje/eventos'].sum())
+
+#higiene
+higiene1_choco = choco[choco['Subtema'] == 'kit de higiene']
+higiene1_choco_total = "{:,.0f}".format(higiene1_choco['No. De personas/porcentaje/eventos'].sum())
+
+#desnutrición2
+desnutricion2_choco = choco[choco['Subtema'] == 'Activación de rutas en casos de riesgo de desnutrición - acciones']
+desnutricion2_choco_total = "{:,.0f}".format(desnutricion2_choco['No. De personas/porcentaje/eventos'].sum())
+
+#salud
+salud_choco = choco[choco['Subtema'] == 'Servicios en salud']
+salud_choco_total = "{:,.0f}".format(salud_choco['No. De personas/porcentaje/eventos'].sum())
+
+#higiene2
+higiene2_choco = choco[choco['Subtema'] == 'insumos de higiene']
+higiene2_choco_total = "{:,.0f}".format(higiene2_choco['No. De personas/porcentaje/eventos'].sum())
+
+#hidratación
+hidratación_choco = choco[choco['Subtema'] == 'Puntos de hidratación']
+hidratación_choco_total = "{:,.0f}".format(hidratación_choco['No. De personas/porcentaje/eventos'].sum())
+
+#telefonico1
+telefonico1_choco = choco[choco['Subtema'] == 'personas se han beneficiado del acompañamiento telefónico de las líneas amigables']
+telefonico1_choco_total = "{:,.0f}".format(telefonico1_choco['No. De personas/porcentaje/eventos'].sum())
+
+#VBG
+VBG_proteccion_choco = choco[choco['Subtema'] == 'Capacitaciones a violencia sexual y VBG contra la niñez']
+VBG_proteccion_choco_total = "{:,.0f}".format(VBG_proteccion_choco['No. De personas/porcentaje/eventos'].sum())
+
+#jornadas
+Jornadas_choco = choco[choco['Subtema'] == 'Jornadas pedagogicas']
+Jornadas_choco_total = "{:,.0f}".format(Jornadas_choco['No. De personas/porcentaje/eventos'].sum())
+
+#mensajes
+Mensajes_comunicacion_choco = choco[choco['Subtema'] == 'Mensajes de prevención']
+Mensajes_comunicacion_choco_total = "{:,.0f}".format(Mensajes_comunicacion_choco['No. De personas/porcentaje/eventos'].sum())
+
+#reuniones
+Reuniones_comunicacion_choco = choco[choco['Subtema'] == 'Reuniones']
+Reuniones_comunicacion_choco_total = "{:,.0f}".format(Reuniones_comunicacion_choco['No. De personas/porcentaje/eventos'].sum())
+
+#apoyo
+apoyo_educacion_choco = choco[choco['Subtema'] == 'reciben diariamente apoyo pedagógico y en competencias socioemocionales, mediante la entrega de material educativo y mensajes de cuidado en el hogar']
+apoyo_educacion_choco_total = "{:,.0f}".format(apoyo_educacion_choco['No. De personas/porcentaje/eventos'].sum())
+
+#Historia
+Historia_choco = choco[choco['Subtema'] == 'Historia destacada']
+Historia_choco.reset_index(drop=True, inplace=True)
+
+Historia_choco_final = Historia_choco['Texto descriptivo'][0]
+
 
 
 

@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
 from datetime import date, timedelta
-import seaborn as sns
-import matplotlib.pyplot as plt
-import plotly.express as px
-import plotly.graph_objs as go
+#import seaborn as sns
+#import matplotlib.pyplot as plt
+#import plotly.express as px
+#import plotly.graph_objs as go
 
 
 df = pd.read_csv('/Users/andresmauriciotrianareina/Documents/GitHub/datainfografias/Propuesta_levantamiento_información_V1.csv')
@@ -71,6 +71,11 @@ covid_activos_total_guajira = "{:,.0f}".format(covid_activos_guajira['No. De per
 covid_sinclasificar_guajira = guajira[guajira['Subtema'] == 'Sin clasificar']
 covid_sinclasificar_total_guajira = "{:,.0f}".format(covid_sinclasificar_guajira['No. De personas/porcentaje/eventos'].sum())
 
+# vacunados
+
+covid_vacunados_guajira = guajira[guajira['Subtema'] == 'Dosis aplicadas']
+covid_vacunados_total_guajira = "{:,.0f}".format(covid_vacunados_guajira['No. De personas/porcentaje/eventos'].sum())
+
 
 # conexión json para el mapa
 
@@ -85,17 +90,17 @@ with urlopen('https://raw.githubusercontent.com/andresmtr/mapa_municipios_colomb
 locs = covid_contagios_guajira['Municipio']
 
 
-for loc in counties['features']:
-    loc['id'] = loc['properties']['MPIO_CNMBR']
-map_guajira = go.Figure(go.Choroplethmapbox(
-                    geojson=counties,
-                    locations=locs,
-                    z=covid_contagios_guajira['No. De personas/porcentaje/eventos'],
-                    colorscale='plotly3',
-                    colorbar_title="Total contagios"))
-map_guajira.update_layout(mapbox_style="carto-positron",
-                        mapbox_zoom=6.7,
-                        mapbox_center = {"lat": 11.5, "lon": -73})
+# for loc in counties['features']:
+#     loc['id'] = loc['properties']['MPIO_CNMBR']
+# map_guajira = go.Figure(go.Choroplethmapbox(
+#                     geojson=counties,
+#                     locations=locs,
+#                     z=covid_contagios_guajira['No. De personas/porcentaje/eventos'],
+#                     colorscale='plotly3',
+#                     colorbar_title="Total contagios"))
+# map_guajira.update_layout(mapbox_style="carto-positron",
+#                         mapbox_zoom=6.7,
+#                         mapbox_center = {"lat": 11.5, "lon": -73})
 
 locs_guajira = covid_contagios_guajira['Municipio'].tolist()
 z_guajira=covid_contagios_guajira['No. De personas/porcentaje/eventos'].tolist()
@@ -267,6 +272,78 @@ datos_final_grafica = datos_final_grafica.fillna(0)
 años_guajira = lista_años_df['Año'].tolist()
 fallecidos_guajira = datos_final_grafica['Fallecidos'].tolist()
 heridos_guajira = datos_final_grafica['Heridos'].tolist()
+
+
+
+##########################
+###### Respuesta UNICEF
+
+#Kits alimentos(necesidades basicas)
+kits_necesidades_guajira = guajira[guajira['Subtema'] == 'Familias se beneficiaron de la entrega de kits de necesidades básicas']
+kits_necesidades_guajira_total = "{:,.0f}".format(kits_necesidades_guajira['No. De personas/porcentaje/eventos'].sum())
+
+#mensajes
+Mensajes_guajira = guajira[guajira['Subtema'] == 'Mensajes informativos']
+Mensajes_guajira_total = "{:,.0f}".format(Mensajes_guajira['No. De personas/porcentaje/eventos'].sum())
+
+#desnutrición
+desnutricion1_guajira = guajira[guajira['Subtema'] == 'Activación de rutas en casos de riesgo de desnutrición - respuesta']
+desnutricion1_guajira_total = "{:,.0f}".format(desnutricion1_guajira['No. De personas/porcentaje/eventos'].sum())
+
+#higiene
+higiene1_guajira = guajira[guajira['Subtema'] == 'kit de higiene']
+higiene1_guajira_total = "{:,.0f}".format(higiene1_guajira['No. De personas/porcentaje/eventos'].sum())
+
+#desnutrición2
+desnutricion2_guajira = guajira[guajira['Subtema'] == 'Activación de rutas en casos de riesgo de desnutrición - acciones']
+desnutricion2_guajira_total = "{:,.0f}".format(desnutricion2_guajira['No. De personas/porcentaje/eventos'].sum())
+
+#salud
+salud_guajira = guajira[guajira['Subtema'] == 'Servicios en salud']
+salud_guajira_total = "{:,.0f}".format(salud_guajira['No. De personas/porcentaje/eventos'].sum())
+
+#higiene2
+higiene2_guajira = guajira[guajira['Subtema'] == 'insumos de higiene']
+higiene2_guajira_total = "{:,.0f}".format(higiene2_guajira['No. De personas/porcentaje/eventos'].sum())
+
+#hidratación
+hidratación_guajira = guajira[guajira['Subtema'] == 'Puntos de hidratación']
+hidratación_guajira_total = "{:,.0f}".format(hidratación_guajira['No. De personas/porcentaje/eventos'].sum())
+
+#telefonico1
+telefonico1_guajira = guajira[guajira['Subtema'] == 'personas se han beneficiado del acompañamiento telefónico de las líneas amigables']
+telefonico1_guajira_total = "{:,.0f}".format(telefonico1_guajira['No. De personas/porcentaje/eventos'].sum())
+
+#VBG
+VBG_proteccion_guajira = guajira[guajira['Subtema'] == 'Capacitaciones a violencia sexual y VBG contra la niñez']
+VBG_proteccion_guajira_total = "{:,.0f}".format(VBG_proteccion_guajira['No. De personas/porcentaje/eventos'].sum())
+
+#jornadas
+Jornadas_guajira = guajira[guajira['Subtema'] == 'Jornadas pedagogicas']
+Jornadas_guajira_total = "{:,.0f}".format(Jornadas_guajira['No. De personas/porcentaje/eventos'].sum())
+
+#mensajes
+Mensajes_comunicacion_guajira = guajira[guajira['Subtema'] == 'Mensajes de prevención']
+Mensajes_comunicacion_guajira_total = "{:,.0f}".format(Mensajes_comunicacion_guajira['No. De personas/porcentaje/eventos'].sum())
+
+#reuniones
+Reuniones_comunicacion_guajira = guajira[guajira['Subtema'] == 'Reuniones']
+Reuniones_comunicacion_guajira_total = "{:,.0f}".format(Reuniones_comunicacion_guajira['No. De personas/porcentaje/eventos'].sum())
+
+#apoyo
+apoyo_educacion_guajira = guajira[guajira['Subtema'] == 'reciben diariamente apoyo pedagógico y en competencias socioemocionales, mediante la entrega de material educativo y mensajes de cuidado en el hogar']
+apoyo_educacion_guajira_total = "{:,.0f}".format(apoyo_educacion_guajira['No. De personas/porcentaje/eventos'].sum())
+
+#Historia
+Historia_guajira = guajira[guajira['Subtema'] == 'Historia destacada']
+Historia_guajira.reset_index(drop=True, inplace=True)
+
+Historia_guajira_final = Historia_guajira['Texto descriptivo'][0]
+
+
+
+
+
 
 
 

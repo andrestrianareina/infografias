@@ -228,9 +228,32 @@
                     </div>
                     <div class="">
                         <p class=""><img src="{% static "base/icon/syringe.png" %}" width="50" height="50"></p>
-                        <p>Dosis aplicadas: </p>
+                        <p>Dosis aplicadas: <strong id="dosis">{{covid_vacunados_total_guajira|safe}}</strong></p>
+                        <script>
+                                var arauca_vacunados = 0
+                                var atlantico_vacunados = 0
+                                var bolivar_vacunados = 0
+                                var choco_vacunados = "{{covid_vacunados_total_choco|safe}}"
+                                var guajira_vacunados = "{{covid_vacunados_total_guajira|safe}}"
+                                var magdalena_vacunados = 0
+                                var narino_vacunados = 0
+                                var nortesa_vacunados = 0
+                                document.querySelector('.selector').addEventListener("change",changeDosis);
+
+                                function changeDosis(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('dosis').innerHTML=guajira_vacunados;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('dosis').innerHTML=choco_vacunados;
+                                    }
+                                } 
+                        </script>
                     </div>
                 </div>
+                <p class="fechainfo">Fecha corte información contagios: {{fecha_covid|safe}}</p>
+                <p class="fechainfo">Fecha corte información vacunación: {{fecha_covid|safe}}</p>
             </div>
             <!-- Mapa -->
             <div class="col-10 col-sm-5 col-md-5 cards-situacional">
@@ -294,7 +317,11 @@
             <div class="col-10 col-sm-5 col-md-5 cards-situacional">
                 <h3 class="subtitulo-seccion">Migración</h3>
                 <div>
+                    
+                </div>
+                <div>
                     <p class=""><img src="{% static "base/icon/refugee.png" %}" width="50" height="50"></p>
+                    <p>Número de migrantes venezolanos en Colombia: <strong>{{Nacional_migrantes_total|safe}}</strong></p>
                     <p>Número de migrantes venezolanos en el departamento: <strong id="migrantes">{{migracion_guajira_numero|safe}}</strong></p>
                     <script>
                             var arauca_migrantes = 0
@@ -317,7 +344,7 @@
                                 }
                             } 
                     </script>
-                    <p>El porcentaje comparado a nivel nacional es el siguiente: <strong id="migracionPorcentaje">{{migracion_porcentaje_guajira|safe}}</strong></p>
+                    <p>El porcentaje comparado a nivel nacional es: <strong id="migracionPorcentaje">{{migracion_porcentaje_guajira|safe}}</strong></p>
                     <script>
                             var arauca_migrantes_porcentaje = 0
                             var atlantico_migrantes_porcentaje = 0
@@ -340,9 +367,11 @@
                             } 
                     </script>
                 </div>
+                <p class="fechainfo">Fecha corte información: {{fecha_final_migración1|safe}}</p>
                 <div>
                     <p class=""><img src="{% static "base/icon/boy.png" %}" width="50" height="50"></p>
-                    <p>Niños registrados bajo el programa "Primero la niñez": <strong id="primeroNinez">{{migracion_pn_numero_guajira|safe}}</strong></p>
+                    <p>Niños registrados bajo el programa "Primero la niñez" en Colombia: <strong>{{Nacional_migrantes_PN_total|safe}}</strong></p>
+                    <p>Niños registrados bajo el programa "Primero la niñez" en el departamento: <strong id="primeroNinez">{{migracion_pn_numero_guajira|safe}}</strong></p>
                     <script>
                             var arauca_primero_ninos = 0
                             var atlantico_primero_ninos = 0
@@ -364,7 +393,7 @@
                                 }
                             } 
                     </script>
-                    <p>El porcentaje comparado a nivel nacional es el siguiente: <strong id="primeroNinezPorcentaje">{{migracion_pn_porcentaje_guajira|safe}}</strong></p>
+                    <p>El porcentaje comparado a nivel nacional es: <strong id="primeroNinezPorcentaje">{{migracion_pn_porcentaje_guajira|safe}}</strong></p>
                     <script>
                             var arauca_primero_ninos_porcentaje = 0
                             var atlantico_primero_ninos_porcentaje = 0
@@ -387,12 +416,14 @@
                             } 
                     </script>
                 </div>
+                <p class="fechainfo">Fecha corte información: {{fecha_final_migración2|safe}}</p>
             </div>
 
             <div class="col-10 col-sm-5 col-md-5 cards-situacional">
                 <h3 class="subtitulo-seccion">Educación</h3>
                 <div>
                     <p class=""><img src="{% static "base/icon/education.png" %}" width="50" height="50"></p>
+                    <p>El número de matriculas a nivel nacional: <strong>{{Nacional_matriculados_total|safe}}</strong></p>
                     <p>El número de matriculas a nivel departamental es: <strong id="educacion">{{educacion_guajira_numero|safe}}</strong></p>
                     <script>
                             var arauca_Educacion = 0
@@ -415,7 +446,7 @@
                                 }
                             } 
                     </script>
-                    <p>El porcentaje comparado a nivel nacional es el siguiente: <strong id="educacion_porce">{{educacion_porcentaje_guajira|safe}}</strong></p>
+                    <p>El porcentaje comparado a nivel nacional es: <strong id="educacion_porce">{{educacion_porcentaje_guajira|safe}}</strong></p>
                     <script>
                             var arauca_Educacion_porcentaje = 0
                             var atlantico_Educacion_porcentaje = 0
@@ -440,7 +471,8 @@
                 </div>
                 <div>
                     <p class=""><img src="{% static "base/icon/reading.png" %}" width="50" height="50"></p>
-                    <p>Personas migrantes matriculadas son: <strong id="educacionMigrante">{{educaion_migrante_numero_guajira|safe}}</strong></p>
+                    <p>Personas migrantes matriculadas a nivel nacional son: <strong>{{Nacional_matriculados_migrantes_total|safe}}</strong></p>
+                    <p>Personas migrantes matriculadas en el departamento son: <strong id="educacionMigrante">{{educaion_migrante_numero_guajira|safe}}</strong></p>
                     <script>
                             var arauca_Educacion_migrante = 0
                             var atlantico_Educacion_migrante = 0
@@ -485,6 +517,7 @@
                             } 
                     </script>
                 </div>
+                <p class="fechainfo">Fecha corte información: {{fecha_final_educacion|safe}}</p>
             </div>
             <div class="col-10 col-sm-5 col-md-5 cards-situacional">
                 <h3 class="subtitulo-seccion">Servicios públicos</h3>
@@ -563,6 +596,7 @@
                             } 
                     </script>
                 </div>
+                <p class="fechainfo">Fecha corte información: {{fecha_final_servicios|safe}}</p>
             </div>
             <div class="col-10 col-sm-5 col-md-5 cards-situacional">
                 <h3 class="subtitulo-seccion">Desastre naturales</h3>
@@ -641,6 +675,7 @@
                             } 
                     </script>
                 </div>
+                <p class="fechainfo">Fecha corte información: {{fecha_final_desastres|safe}}</p>
             </div>
             <div class="col-10 col-sm-5 col-md-5 cards-situacional">
                 <h3 class="subtitulo-seccion">Salud</h3>
@@ -694,7 +729,9 @@
                             } 
                     </script>
                 </div>
+                <p class="fechainfo">Fecha corte información: {{fecha_final_salud|safe}}</p>
             </div>
+            <!-- VBG -->
             <div class="col-10 col-sm-5 col-md-5 cards-situacional">
                 <h3 class="subtitulo-seccion">Violencia basada en género</h3>
                 <div class="grid-covid">
@@ -849,14 +886,14 @@
                         </script>
                     </div>
                 </div>
-                
+                <p class="fechainfo">Fecha corte información: {{fecha_final_VGB|safe}}</p>
             </div>
             <div class="col-10 col-sm-5 col-md-5 cards-situacional">
                 <h3 class="subtitulo-seccion">Conflicto armado</h3>
                 <div class="grid-covid">
                     <div>
                         <p class=""><img src="{% static "base/icon/submachine-gun.png" %}" width="50" height="50"></p>
-                        <p>Número de Eventos de violecia: <strong id="EventosVio">{{eventos_guajira_numero|safe}}</strong></p>
+                        <p>Número de Eventos de violencia: <strong id="EventosVio">{{eventos_guajira_numero|safe}}</strong></p>
                         <script>
                                 var arauca_eventos = 0
                                 var atlantico_eventos = 0
@@ -1005,7 +1042,8 @@
                         </script>
                     </div>
                 </div>
-
+                <p class="fechainfo">Fecha corte información para conflicto armado: {{fecha_final_eventos|safe}}</p>
+                <p class="fechainfo">Fecha corte información para MAP-MUSE: {{fecha_final_MAP|safe}}</p>
             </div>
             <div class="col-10 col-sm-5 col-md-5 cards-situacional" >
                 <div>
@@ -1098,19 +1136,103 @@
                 <div class="grid-respuesta">
                     <div>
                         <p class=""><img src="{% static "base/icon/basic-needs.png" %}" width="50" height="50"></p>
-                        <p><strong>XX</strong> Familias se beneficiaron de la entrega de kits de necesidades básicas</p>
+                        <p><strong id="kits1">{{kits_necesidades_guajira_total|safe}}</strong> Familias se beneficiaron de la entrega de kits de necesidades básicas</p>
+                        <script>
+                                var arauca_kits1 = 0
+                                var atlantico_kits1 = 0
+                                var bolivar_kits1 = 0
+                                var choco_kits1 = "{{kits_necesidades_choco_total|safe}}"
+                                var guajira_kits1 = "{{kits_necesidades_guajira_total|safe}}"
+                                var magdalena_kits1 = 0
+                                var narino_kits1 = 0
+                                var nortesa__kits1 = 0
+                                document.querySelector('.selector').addEventListener("change",changeKits1);
+
+                                function changeKits1(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('kits1').innerHTML=guajira_kits1;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('kits1').innerHTML=choco_kits1;
+                                    }
+                                } 
+                        </script>
                     </div>
                     <div>
                         <p class=""><img src="{% static "base/icon/email.png" %}" width="50" height="50"></p>
-                        <p><strong>XX</strong> Mensajes informativos</p>
+                        <p><strong id="mensajes1">{{Mensajes_guajira_total|safe}}</strong> Mensajes informativos</p>
+                        <script>
+                                var arauca_mensajes1 = 0
+                                var atlantico_mensajes1 = 0
+                                var bolivar_mensajes1 = 0
+                                var choco_mensajes1 = "{{Mensajes_choco_total|safe}}"
+                                var guajira_mensajes1 = "{{Mensajes_guajira_total|safe}}"
+                                var magdalena_mensajes1 = 0
+                                var narino_mensajes1 = 0
+                                var nortesa_mensajes1= 0
+                                document.querySelector('.selector').addEventListener("change",changeMens1);
+
+                                function changeMens1(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('mensajes1').innerHTML=guajira_mensajes1;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('mensajes1').innerHTML=choco_mensajes1;
+                                    }
+                                } 
+                        </script>
                     </div>
                     <div>
                         <p class=""><img src="{% static "base/icon/fork.png" %}" width="50" height="50"></p>
-                        <p>Activación de rutas en <strong>XX</strong> casos de riesgo de desnutrición</p>
+                        <p>Activación de rutas en <strong id="desnutricion1">{{desnutricion1_guajira_total|safe}}</strong> casos de riesgo de desnutrición</p>
+                        <script>
+                                var arauca_desnutricion1 = 0
+                                var atlantico_desnutricion1 = 0
+                                var bolivar_desnutricion1 = 0
+                                var choco_desnutricion1 = "{{desnutricion1_choco_total|safe}}"
+                                var guajira_desnutricion1 = "{{desnutricion1_guajira_total|safe}}"
+                                var magdalena_desnutricion1 = 0
+                                var narino_desnutricion1 = 0
+                                var nortesa__desnutricion1= 0
+                                document.querySelector('.selector').addEventListener("change",changeDesnutricion1);
+
+                                function changeDesnutricion1(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('desnutricion1').innerHTML=guajira_desnutricion1;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('desnutricion1').innerHTML=choco_desnutricion1;
+                                    }
+                                } 
+                        </script>
                     </div>
                     <div>
                         <p class=""><img src="{% static "base/icon/shampoo.png" %}" width="50" height="50"></p>
-                        <p>Se entregaron <strong>XX</strong> kit de higiene</p>
+                        <p>Se entregaron <strong id="higiene1">{{higiene1_guajira_total|safe}}</strong> kit de higiene</p>
+                        <script>
+                                var arauca_higiene = 0
+                                var atlantico_higiene = 0
+                                var bolivar_higiene = 0
+                                var choco_higiene = "{{higiene1_choco_total|safe}}"
+                                var guajira_higiene = "{{higiene1_guajira_total|safe}}"
+                                var magdalena_higiene = 0
+                                var narino_higiene = 0
+                                var nortesa__higiene= 0
+                                document.querySelector('.selector').addEventListener("change",changeHigiene1);
+
+                                function changeHigiene1(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('higiene1').innerHTML=guajira_higiene;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('higiene1').innerHTML=choco_higiene;
+                                    }
+                                } 
+                        </script>
                     </div>
                 </div>
 
@@ -1136,8 +1258,50 @@
                         <p class=""><img src="{% static "base/icon/salud.png" %}" width="60" height="70"></p>
                     </div>
                     <div class="col-10 col-sm-10 col-md-10 grid-acciones">
-                        <p>Activación de rutas en <strong>XX</strong> casos de riesgo de desnutrición</p>
-                        <p>Se brindaron <strong>XX</strong> servicios en salud</p>
+                        <p>Activación de rutas en <strong id="desnutricion2">{{desnutricion2_guajira_total|safe}}</strong> casos de riesgo de desnutrición</p>
+                        <script>
+                                var arauca_desnutricion2 = 0
+                                var atlantico_desnutricion2 = 0
+                                var bolivar_desnutricion2 = 0
+                                var choco_desnutricion2 = "{{desnutricion2_choco_total|safe}}"
+                                var guajira_desnutricion2 = "{{desnutricion2_guajira_total|safe}}"
+                                var magdalena_desnutricion2 = 0
+                                var narino_desnutricion2 = 0
+                                var nortesa__desnutricion2= 0
+                                document.querySelector('.selector').addEventListener("change",changeDesnutricion2);
+
+                                function changeDesnutricion2(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('desnutricion2').innerHTML=guajira_desnutricion2;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('desnutricion2').innerHTML=choco_desnutricion2;
+                                    }
+                                } 
+                        </script>
+                        <p>Se brindaron <strong id="salud2">{{salud_guajira_total|safe}}</strong> servicios en salud</p>
+                        <script>
+                                var arauca_salud2 = 0
+                                var atlantico_salud2 = 0
+                                var bolivar_salud2 = 0
+                                var choco_salud2 = "{{salud_chco_total|safe}}"
+                                var guajira_salud2 = "{{salud_guajira_total|safe}}"
+                                var magdalena_salud2 = 0
+                                var narino_salud2 = 0
+                                var nortesa__salud2= 0
+                                document.querySelector('.selector').addEventListener("change",changeSalud2);
+
+                                function changeSalud2(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('salud2').innerHTML=guajira_salud2;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('salud2').innerHTML=choco_salud2;
+                                    }
+                                } 
+                        </script>
                     </div>
                 </div>
             </div>
@@ -1147,8 +1311,50 @@
                         <p class=""><img src="{% static "base/icon/wash.png" %}" width="60" height="70"></p>
                     </div>
                     <div class="col-10 col-sm-10 col-md-10 grid-acciones">
-                        <p>Entrega de <strong>XX</strong> insumos de higiene</p>
-                        <p>Entrega de <strong>XX</strong> Puntos de hidratación</p>
+                        <p>Entrega de <strong id="higiene2">{{higiene2_guajira_total|safe}}</strong> insumos de higiene</p>
+                        <script>
+                                var arauca_higiene2 = 0
+                                var atlantico_higiene2 = 0
+                                var bolivar_higiene2 = 0
+                                var choco_higiene2 = "{{higiene2_choco_total|safe}}"
+                                var guajira_higiene2 = "{{higiene2_guajira_total|safe}}"
+                                var magdalena_higiene2 = 0
+                                var narino_higiene2 = 0
+                                var nortesa__higiene2= 0
+                                document.querySelector('.selector').addEventListener("change",changeHigiene2);
+
+                                function changeHigiene2(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('higiene2').innerHTML=guajira_higiene2;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('higiene2').innerHTML=choco_higiene2;
+                                    }
+                                } 
+                        </script>
+                        <p>Entrega de <strong id="hidratacion">{{hidratación_guajira_total|safe}}</strong> Puntos de hidratación</p>
+                        <script>
+                                var arauca_hiratacion = 0
+                                var atlantico_hiratacion = 0
+                                var bolivar_hiratacion = 0
+                                var choco_hiratacion = "{{hidratación_choco_total|safe}}"
+                                var guajira_hiratacion = "{{hidratación_guajira_total|safe}}"
+                                var magdalena_hiratacion = 0
+                                var narino_hiratacion = 0
+                                var nortesa__hiratacion= 0
+                                document.querySelector('.selector').addEventListener("change",changehidratacion);
+
+                                function changehidratacion(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('hidratacion').innerHTML=guajira_hiratacion;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('hidratacion').innerHTML=choco_hiratacion;
+                                    }
+                                } 
+                        </script>
                     </div>
                 </div>
             </div>
@@ -1158,7 +1364,28 @@
                         <p class=""><img src="{% static "base/icon/desarrollo.png" %}" width="60" height="70"></p>
                     </div>
                     <div class="col-10 col-sm-10 col-md-10 grid-acciones">
-                        <p><strong>XX</strong> personas se han beneficiado del acompañamiento telefónico de las líneas amigables</p>
+                        <p><strong id="telefonico1">{{telefonico1_guajira_total|safe}}</strong> personas se han beneficiado del acompañamiento telefónico de las líneas amigables</p>
+                        <script>
+                                var arauca_telefonico1 = 0
+                                var atlantico_telefonico1 = 0
+                                var bolivar_telefonico1 = 0
+                                var choco_telefonico1 = "{{telefonico1_choco_total|safe}}"
+                                var guajira_telefonico1 = "{{telefonico1_guajira_total|safe}}"
+                                var magdalena_telefonico1 = 0
+                                var narino_telefonico1 = 0
+                                var nortesa__telefonico1= 0
+                                document.querySelector('.selector').addEventListener("change",changeTelefonico1);
+
+                                function changeTelefonico1(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('telefonico1').innerHTML=guajira_telefonico1;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('telefonico1').innerHTML=choco_telefonico1;
+                                    }
+                                } 
+                        </script>
                     </div>
                 </div>
             </div>
@@ -1168,8 +1395,50 @@
                         <p class=""><img src="{% static "base/icon/proteccion.png" %}" width="60" height="70"></p>
                     </div>
                     <div class="col-10 col-sm-10 col-md-10 grid-acciones">
-                        <p><strong>XX</strong> Capacitaciones a violencia sexual y VBG contra la niñez.</p>
-                        <p>Se brindaron <strong>XX</strong> jornadas pedagógicas</p>
+                        <p><strong id="proteccion2">{{VBG_proteccion_guajira_total|safe}}</strong> Capacitaciones a violencia sexual y VBG contra la niñez.</p>
+                        <script>
+                                var arauca_proteccion2 = 0
+                                var atlantico_proteccion2 = 0
+                                var bolivar_proteccion2 = 0
+                                var choco_proteccion2 = "{{VBG_proteccion_choco_total|safe}}"
+                                var guajira_proteccion2 = "{{VBG_proteccion_guajira_total|safe}}"
+                                var magdalena_proteccion2 = 0
+                                var narino_proteccion2 = 0
+                                var nortesa_proteccion2= 0
+                                document.querySelector('.selector').addEventListener("change",changeProteccion2);
+
+                                function changeProteccion2(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('proteccion2').innerHTML=guajira_proteccion2;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('proteccion2').innerHTML=choco_proteccion2;
+                                    }
+                                } 
+                        </script>
+                        <p>Se brindaron <strong id="jornada">{{Jornadas_guajira_total|safe}}</strong> jornadas pedagógicas</p>
+                        <script>
+                                var arauca_jornada = 0
+                                var atlantico_jornada = 0
+                                var bolivar_jornada = 0
+                                var choco_jornada = "{{Jornadas_choco_total|safe}}"
+                                var guajira_jornada = "{{Jornadas_guajira_total|safe}}"
+                                var magdalena_jornada = 0
+                                var narino_jornada = 0
+                                var nortesa_jornada= 0
+                                document.querySelector('.selector').addEventListener("change",changeJornada);
+
+                                function changeJornada(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('jornada').innerHTML=guajira_jornada;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('jornada').innerHTML=choco_jornada;
+                                    }
+                                } 
+                        </script>
                     </div>
                 </div>
             </div>
@@ -1179,18 +1448,81 @@
                         <p class=""><img src="{% static "base/icon/comunicacion.png" %}" width="60" height="70"></p>
                     </div>
                     <div class="col-10 col-sm-10 col-md-10 grid-acciones">
-                        <p><strong>XX</strong> Mensajes de prevención</p>
-                        <p><strong>XX</strong> reuniones</p> 
+                        <p><strong id="comunicacion">{{Mensajes_comunicacion_guajira_total|safe}}</strong> Mensajes de prevención</p>
+                        <script>
+                                var arauca_comunicacion = 0
+                                var atlantico_comunicacion = 0
+                                var bolivar_comunicacion = 0
+                                var choco_comunicacion = "{{Mensajes_comunicacion_choco_total|safe}}"
+                                var guajira_comunicacion = "{{Mensajes_comunicacion_guajira_total|safe}}"
+                                var magdalena_comunicacion = 0
+                                var narino_comunicacion = 0
+                                var nortesa_comunicacion= 0
+                                document.querySelector('.selector').addEventListener("change",changeComunicacion);
+
+                                function changeComunicacion(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('comunicacion').innerHTML=guajira_comunicacion;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('Comunicacion').innerHTML=choco_comunicacion;
+                                    }
+                                } 
+                        </script>
+                        <p><strong id="reunion">{{Reuniones_comunicacion_guajira_total|safe}}</strong> reuniones</p> 
+                        <script>
+                                var arauca_reunion = 0
+                                var atlantico_reunion = 0
+                                var bolivar_reunion = 0
+                                var choco_reunion = "{{Reuniones_comunicacion_choco_total|safe}}"
+                                var guajira_reunion = "{{Reuniones_comunicacion_guajira_total|safe}}"
+                                var magdalena_reunion = 0
+                                var narino_reunion = 0
+                                var nortesa_reunion= 0
+                                document.querySelector('.selector').addEventListener("change",changeReunion);
+
+                                function changeReunion(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('reunion').innerHTML=guajira_reunion;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('reunion').innerHTML=choco_reunion;
+                                    }
+                                } 
+                        </script>
                     </div>
                 </div>
             </div>
             <div class="col-10 col-sm-5 col-md-5 cards-situacional">
                 <div class="row">
                     <div class="col-2 col-sm-2 col-md-2 grid-acciones">
-                        <p class=""><img src="{% static "base/icon/educacion.png" %}" width="60" height="70"></p>
+                        <p class=""><img src="{% static "base/icon/Educacion.png" %}" width="60" height="70"></p>
                     </div>
                     <div class="col-10 col-sm-10 col-md-10 grid-acciones">
-                        <p><strong>XX</strong> reciben diariamente apoyo pedagógico y en competencias socioemocionales, mediante la entrega de material educativo y mensajes de cuidado en el hogar</p>
+                        <p><strong id="apoyoEducacion">{{apoyo_educacion_guajira_total|safe}}</strong> reciben diariamente apoyo pedagógico y en competencias socioemocionales, mediante la entrega de material educativo y mensajes de cuidado en el hogar</p>
+                        <script>
+                                var arauca_apoyo_educacion = 0
+                                var atlantico_apoyo_educacion = 0
+                                var bolivar_apoyo_educacion = 0
+                                var choco_apoyo_educacion = "{{apoyo_educacion_choco_total|safe}}"
+                                var guajira_apoyo_educacion = "{{apoyo_educacion_guajira_total|safe}}"
+                                var magdalena_apoyo_educacion = 0
+                                var narino_apoyo_educacion = 0
+                                var nortesa_apoyo_educacion= 0
+                                document.querySelector('.selector').addEventListener("change",changeApoyoEducacion);
+
+                                function changeApoyoEducacion(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('apoyoEducacion').innerHTML=guajira_apoyo_educacion;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('apoyoEducacion').innerHTML=choco_apoyo_educacion;
+                                    }
+                                } 
+                        </script>
                     </div>
                 </div>
             </div>
@@ -1207,12 +1539,44 @@
             <div class="col-10 col-sm-10 col-md-10 cards-situacional">
                 <div class="row">
                     <div class="col-12 col-sm-4 col-md-4 grid-acciones">
-                        <img src="{% static "base/icon/foto.png" %}" width="300" height="200">
+                        <img src="{% static "base/icon/foto.png" %}" id="foto" width="300" height="200">
+                        <script>
+                            document.querySelector('.selector').addEventListener("change",changefoto);
+                            function changefoto(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('foto').src="{% static "base/icon/foto.png" %}";
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('foto').src="{% static "base/icon/foto2.png" %}";
+                                    }
+                                } 
+                        </script>
                     </div>
                     <div class="col-12 col-sm-8 col-md-8 grid-acciones">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos quasi esse possimus perferendis beatae aliquid aut dolorum fuga in, dolorem sint consequatur error asperiores et itaque at sunt voluptates nam!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat dicta, nulla magnam eum maiores alias tempore similique maxime numquam dolorum unde. Officia a iure molestiae adipisci fugit inventore voluptates blanditiis!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa facilis aliquam incidunt animi enim, aperiam maiores a soluta commodi sint necessitatibus ratione molestias inventore sapiente placeat! Modi excepturi inventore ad?</p>
+                        <p id="historia">{{Historia_guajira_final|safe}}</p>
+                        <script>
+                                var arauca_historia = 0
+                                var atlantico_historia = 0
+                                var bolivar_historia = 0
+                                var choco_historia = "{{Historia_choco_final|safe}}"
+                                var guajira_historia = "{{Historia_guajira_final|safe}}"
+                                var magdalena_historia = 0
+                                var narino_historia = 0
+                                var nortesa_historia= 0
+                                document.querySelector('.selector').addEventListener("change",changeHistoria);
+
+                                function changeHistoria(event){
+                                    if(event.target.value === "La Guajira"){
+                                        document.getElementById('historia').innerHTML=guajira_historia;
+                                        
+                                    }
+                                    else if(event.target.value === "Choco"){
+                                        document.getElementById('historia').innerHTML=choco_historia;
+                                    }
+                                } 
+                        </script>
+                        
                     </div>
 
                 </div>

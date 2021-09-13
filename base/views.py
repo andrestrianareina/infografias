@@ -4,6 +4,7 @@ from django.views.generic import ListView, View, DetailView
 from .models import RedesSociales
 from base.guajira import *
 from base.choco import *
+from base.datos_nacionales import *
 import pandas as pd
 import json
 
@@ -19,6 +20,24 @@ def Inicio (request):
 
     context = {
 
+        ############### Datos nacionales
+
+        'fecha_covid':fecha_covid,
+        'fecha_final_migración1':fecha_final_migración1,
+        'fecha_final_migración2':fecha_final_migración2,
+        'fecha_final_educacion':fecha_final_educacion,
+        'fecha_final_servicios':fecha_final_servicios,
+        'fecha_final_desastres':fecha_final_desastres,
+        'fecha_final_salud':fecha_final_salud,
+        'fecha_final_VGB':fecha_final_VGB,
+        'fecha_final_eventos':fecha_final_eventos,
+        'fecha_final_MAP':fecha_final_MAP,
+        'Nacional_migrantes_total':Nacional_migrantes_total,
+        'Nacional_migrantes_PN_total':Nacional_migrantes_PN_total,
+        'Nacional_matriculados_total':Nacional_matriculados_total,
+        'Nacional_matriculados_migrantes_total':Nacional_matriculados_migrantes_total,
+
+
         ############### Datos la Guajira
 
         #### Covid
@@ -27,6 +46,7 @@ def Inicio (request):
         'covid_recuperados_total_guajira':covid_recuperados_total_guajira,
         'covid_activos_total_guajira':covid_activos_total_guajira,
         'covid_sinclasificar_total_guajira':covid_sinclasificar_total_guajira,
+        'covid_vacunados_total_guajira':covid_vacunados_total_guajira,
         'locs_guajira':locs_guajira,
         'z_guajira':z_guajira,
 
@@ -79,6 +99,25 @@ def Inicio (request):
         'fallecidos_guajira':fallecidos_guajira,
         'heridos_guajira':heridos_guajira,
 
+        ### Respuesta y acciones UNICEF
+
+        'kits_necesidades_guajira_total':kits_necesidades_guajira_total,
+        'Mensajes_guajira_total':Mensajes_guajira_total,
+        'desnutricion1_guajira_total':desnutricion1_guajira_total,
+        'higiene1_guajira_total':higiene1_guajira_total,
+        'desnutricion2_guajira_total':desnutricion2_guajira_total,
+        'salud_guajira_total':salud_guajira_total,
+        'higiene2_guajira_total':higiene2_guajira_total,
+        'hidratación_guajira_total':hidratación_guajira_total,
+        'telefonico1_guajira_total':telefonico1_guajira_total,
+        'VBG_proteccion_guajira_total':VBG_proteccion_guajira_total,
+        'Jornadas_guajira_total':Jornadas_guajira_total,
+        'Mensajes_comunicacion_guajira_total':Mensajes_comunicacion_guajira_total,
+        'Reuniones_comunicacion_guajira_total':Reuniones_comunicacion_guajira_total,
+        'apoyo_educacion_guajira_total':apoyo_educacion_guajira_total,
+        'Historia_guajira_final':Historia_guajira_final,
+
+
         
         
         ############### Datos la Choco
@@ -89,6 +128,7 @@ def Inicio (request):
         'covid_recuperados_total_choco':covid_recuperados_total_choco,
         'covid_activos_total_choco':covid_activos_total_choco,
         'covid_sinclasificar_total_choco':covid_sinclasificar_total_choco,
+        'covid_vacunados_total_choco':covid_vacunados_total_choco,
         'locs_choco':locs_choco,
         'z_choco':z_choco,
 
@@ -140,5 +180,24 @@ def Inicio (request):
         'años_choco':años_choco,
         'fallecidos_choco':fallecidos_choco,
         'heridos_choco':heridos_choco,
+
+
+        ### Respuesta y acciones UNICEF
+
+        'kits_necesidades_choco_total':kits_necesidades_choco_total,
+        'Mensajes_choco_total':Mensajes_choco_total,
+        'desnutricion1_choco_total':desnutricion1_choco_total,
+        'higiene1_choco_total':higiene1_choco_total,
+        'desnutricion2_choco_total':desnutricion2_choco_total,
+        'salud_choco_total':salud_choco_total,
+        'higiene2_choco_total':higiene2_choco_total,
+        'hidratación_choco_total':hidratación_choco_total,
+        'telefonico1_choco_total':telefonico1_choco_total,
+        'VBG_proteccion_choco_total':VBG_proteccion_choco_total,
+        'Jornadas_choco_total':Jornadas_choco_total,
+        'Mensajes_comunicacion_choco_total':Mensajes_comunicacion_choco_total,
+        'Reuniones_comunicacion_choco_total':Reuniones_comunicacion_choco_total,
+        'apoyo_educacion_choco_total':apoyo_educacion_choco_total,
+        'Historia_choco_final':Historia_choco_final,
     }
     return render(request,'index.html',context)
